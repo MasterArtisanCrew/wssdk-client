@@ -20,7 +20,7 @@ class KenWSCore {
     this.heartbeat_interval_time = config.heartbeat_interval_time || 3000;
 
     // 是否允许重连
-    this.reconnect_allow = config.reconnect_allow || true;
+    this.reconnect_allow = typeof config.reconnect_allow === 'boolean' ? config.reconnect_allow : true;
     // 重连最大数
     this.reconnect_limit = config.reconnect_limit || 3;
     // 当前重连第几次
