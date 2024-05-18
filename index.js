@@ -1,6 +1,5 @@
 class KenWSCore {
   constructor({ user_id = 0, socket_url, app_key, ...config }) {
-
     // 用户id
     this.id = +user_id;
 
@@ -142,7 +141,7 @@ class KenWSCore {
           from,
           to,
           content,
-          app_key: this.app_key,
+          appKey: this.app_key,
           ...rest,
         })
       );
@@ -150,7 +149,7 @@ class KenWSCore {
     } else {
       console.log('websocket unready...');
       this.reconnect(() => {
-        this.send({ type, from, to, content, ...rest });
+        this.send({ type, from, to, content, appKey: this.app_key, ...rest });
       });
     }
   }
@@ -166,6 +165,7 @@ class KenWSCore {
           from: this.id,
           to: 0,
           content: 'PING',
+          appKey: this.app_key,
         });
       }, this.reconnect_interval_timer);
     }
