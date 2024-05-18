@@ -1,6 +1,6 @@
 {
   "name": "ken-ws-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ws sdk client side",
   "main": "index.js",
   "scripts": {
