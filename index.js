@@ -102,7 +102,7 @@ class KenWSCore {
     console.log('websocket closed...');
     if (this.reconnect_interval) clearInterval(this.reconnect_interval);
     if (this.heartbeat_interval) clearInterval(this.heartbeat_interval);
-    this.reconnect_allow = false;
+    this.reconnect_allow = config.reconnect_allow;
     if (this.ws) this.ws.close();
   }
 
