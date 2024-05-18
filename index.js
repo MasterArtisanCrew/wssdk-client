@@ -1,13 +1,14 @@
 class KenWSCore {
-  constructor({ userId = 0, socketURL, appKey, ...config }) {
+  constructor({ user_id = 0, socket_url, app_key, ...config }) {
+
     // 用户id
-    this.id = userId;
+    this.id = +user_id;
 
     // WebSocket连接地址
-    this.socketURL = socketURL;
+    this.socket_url = socket_url;
 
     // 应用key
-    this.appKey = appKey;
+    this.app_key = app_key;
 
     // socket连接对象实例
     this.ws = null;
@@ -38,7 +39,7 @@ class KenWSCore {
       return this.ws;
     }
 
-    this.ws = new WebSocket(this.socketURL);
+    this.ws = new WebSocket(this.socket_url);
 
     this.ws.onopen = () => {
       console.log('ws.onopen:%csuccessful', 'color: green');
@@ -141,7 +142,7 @@ class KenWSCore {
           from,
           to,
           content,
-          appKey: this.appKey,
+          app_key: this.app_key,
           ...rest,
         })
       );

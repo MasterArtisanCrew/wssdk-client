@@ -1,25 +1,39 @@
 # ken-ws-sdk
 
-import wssdk from 'ken-ws-sdk'
+```
+import KenWSCore from 'ken-ws-sdk'
 
-参数(必传):
+const wssdk = new KenWSCore({
+  user_id: 1,
+  socket_url: 'ws://xxx',
+  app_key: 'xxx',
+  reconnect_allow: false
+})
 
-1. userId | number | default:0
-2. socketURL | string
-3. appKey | string
+wssdk.init({
+  success: () => {},
+  failed: () => {}
+})
+```
 
-参数(可选):
+### 参数:
 
-1. heartbeat_allow | boolean | default:true
-2. heartbeat_interval_time | number | default:3000
-3. reconnect_allow | boolean | default:true
-4. reconnect_limit | number | default:3
-5. reconnect_interval_timer | number | default:3000
+| 参数 | 数据类型 | 默认值 | 是否必传 | 描述 |
+| -- | -- | -- | -- | -- |
+| user_id | number/string | 0 | ✅ | 用户id |
+| socket_url | string | -- | ✅ | websocket连接地址 |
+| app_key | string | -- | ✅ | 应用唯一标识 |
+| heartbeat_allow | boolean | true | × | 是否允许发送心跳 |
+| heartbeat_interval_time | number | 3000 | × | 发送心跳时间间隔(毫秒) |
+| reconnect_allow | boolean | true | × | 是否允许重连 |
+| reconnect_limit | number | 3 | × | 重连次数限制 |
+| reconnect_interval_timer | number | 3000 | × | 重连时间间隔(毫秒) |
 
-方法:
+### 方法:
 
-1. init({ success, failed }) // 初始化: success, failed均可选
-2. reconnect(success) // 重连接: success可选
-3. close() // 断开连接
-4. receiveCallback(json) // 接收消息的回调
-5. send({ type, from, to, content, ...rest }) // 发送消息 type:('backend' | 'user' | 'PING' | 'client') | from: (user_id | 0(backend)) | to: userId | content: content
+| 函数名称 | 参数 | 描述 |
+| -- | -- | -- |
+| init | { success: () => {}, failed: () => {} } | 初始化 |
+| close | -- | 关闭连接 |
+| receiveCallback | json | 数据接收处理函数 |
+| send | { type: enum('backend','user','PING','client'), from: number, to: number, content: string, ...rest } | 消息发送 |
